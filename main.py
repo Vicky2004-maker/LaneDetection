@@ -58,19 +58,20 @@ def display_lines(image, lines):
     return line_image
 
 
-# img_data = cv2.imread('images\\sample_road.jpg')
-# lane_image = np.copy(img_data)
-# canny_image = canny(lane_image)
-# cropped_image = region_of_interest(canny_image)
-# lines = cv2.HoughLinesP(cropped_image, 3, np.pi / 180, 100, np.array([]), minLineLength=30, maxLineGap=5)
-# averaged_lines = average_slope_intercept(lane_image, lines)
-# line_image = display_lines(lane_image, averaged_lines)
-# combo_image = cv2.addWeighted(lane_image, 0.8, line_image, 1, 1)
-##cv2.imshow('Result', combo_image)
-##cv2.waitKey(0)
-# plt.imshow(lane_image)
-# plt.show()
+img_data = cv2.imread('images\\sample_road.jpg')
+lane_image = np.copy(img_data)
+canny_image = canny(lane_image)
+cropped_image = region_of_interest(canny_image)
+lines = cv2.HoughLinesP(cropped_image, 3, np.pi / 180, 100, np.array([]), minLineLength=30, maxLineGap=5)
+averaged_lines = average_slope_intercept(lane_image, lines)
+line_image = display_lines(lane_image, averaged_lines)
+combo_image = cv2.addWeighted(lane_image, 0.8, line_image, 1, 1)
+cv2.imshow('Result', combo_image)
+cv2.waitKey(0)
+plt.imshow(lane_image)
+plt.show()
 
+'''
 cap = cv2.VideoCapture("video\\road_video.mp4")
 while cap.isOpened():
     _, frame = cap.read()
@@ -82,3 +83,4 @@ while cap.isOpened():
     combo_image = cv2.addWeighted(frame, 0.8, line_image, 1, 1)
     cv2.imshow('Result', combo_image)
     cv2.waitKey(1)
+'''
